@@ -79,8 +79,6 @@ Głównym założeniem projektu jest stworzenie aplikacji, która będzie:
 * dostępna dla szerokiego grona użytkowników,
 * motywowała do regularnej nauki.
 
-> **Jest dobrze? Jest tanio.** 💰
-
 ---
 
 ## 👥 Podział ról
@@ -91,6 +89,7 @@ Głównym założeniem projektu jest stworzenie aplikacji, która będzie:
 | **Filip**  | Dokumentacja – format dokumentacji, diagramy, dokumentacja ogólna oraz pilnowanie dokumentowania projektu |
 | **Alicja** | Programista                                                                                                      |
 | **Daniel** | Tworzenie tasków, organizacja pracy i pilnowanie postępów zespołu                                         |
+| **Karol**  | Programista, Prezenter                                                                                     |
 
 ### Współpraca
 
