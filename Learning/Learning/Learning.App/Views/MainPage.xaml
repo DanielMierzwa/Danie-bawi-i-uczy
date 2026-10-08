@@ -29,7 +29,7 @@
         <Grid   ColumnDefinitions="*,50"
                 RowDefinitions="50" 
                 HorizontalOptions="Fill">
-            <Entry HorizontalOptions="Fill" Text="wyszukaj"/>
+            <Entry HorizontalOptions="Fill" Placeholder="wyszukaj"/>
             <ImageButton Grid.Column="1" Source="search.png"/>
         </Grid>
 

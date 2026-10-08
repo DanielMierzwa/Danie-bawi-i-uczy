@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Learning.App.Models.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace Learning.App.Models
             if (!CategoriesId.Contains(categoryId))
                 CategoriesId.Add(categoryId);
             else
-                throw new Exception($"Materiał: {Title} posiada już kategorię o id: {categoryId}");
+                throw new DoubledCategoryException(categoryId, Title);
         }
         public void ResetCategories()
         {

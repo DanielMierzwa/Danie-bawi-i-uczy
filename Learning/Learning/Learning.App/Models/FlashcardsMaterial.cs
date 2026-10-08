@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Learning.App.Models.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,32 @@ namespace Learning.App.Models
 {
     public class FlashcardsMaterial : AbstractMaterial
     {
-        private List<Flashcard> flashcards;
+        // zamysł jest taki, że metody AddFlashcard(), GetFlashcardFromIndex(), GetFlashcardCount() i RemoveFlashcard()
+        // są potrzebne tylko do edytora, a metody GetNextFlashcard() i ReturnFlashcard(),
+        // viewmodel będzie wywoływał GetNextFlashcard() w try{}, dopóki w powtórkach nic nie zostanie
+        private List<Flashcard> flashcards = new();
+        private List<Flashcard> reviews = null;
+        private int currentFlashCardIndex;
 
-        public FlashcardsMaterial(int id, bool isPublic, string creatorLogin, string title, List<int> categoriesId) : base(id, isPublic, creatorLogin, title, categoriesId)
+        public FlashcardsMaterial(int id, bool isPublic, string creatorLogin, string title, List<int> categoriesId) 
+            : base(id, isPublic, creatorLogin, title, categoriesId) { currentFlashCardIndex = 0; }
+        public void ReturnFlashcard(Flashcard f)
         {
+            reviews.Insert(0, f);
+        }
+        public Flashcard GetNextFlashcard()
+        {
+            if (reviews == null)
+                foreach (var card in flashcards)
+                    reviews.Add(card.Copy());
+            if (reviews.Count == 0)
+                throw new FlashcardsReviewEndedException();
+            currentFlashCardIndex++;
+            if (currentFlashCardIndex >= reviews.Count)
+                currentFlashCardIndex = 0;
+            var f = reviews[currentFlashCardIndex];
+            reviews.Remove(f);
+            return f;
         }
 
         public void AddFlashcard(Flashcard f)
@@ -19,9 +42,14 @@ namespace Learning.App.Models
             flashcards.Add(f);
         }
 
-        public Flashcard GetFlashcard(int FlashcardId)
+        public void RemoveFlashcard(Flashcard f)
         {
-            return flashcards[FlashcardId];
+            flashcards.Remove(f);
+        }
+        
+        public Flashcard GetFlashcardFromIndex(int index)
+        {
+            return flashcards[index];
         }
         public int GetFlashcardCount()
         {
