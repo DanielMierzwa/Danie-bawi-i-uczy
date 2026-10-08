@@ -26,7 +26,7 @@ namespace Learning.App.Models
             CategoriesId = categoriesId;
         }
 
-        public abstract void Delete();
+        public abstract void Delete();// to jest tutaj tylko dlatego że mieliśmy to w diagramie klas
         public void SetVisibility(bool isPublic)
         {
             IsPublic = isPublic;

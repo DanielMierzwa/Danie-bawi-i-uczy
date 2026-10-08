@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Learning.App.Views.MainPage">
+             x:Class="Learning.App.Views.MainPage"
+             xmlns:vm="clr-namespace:Learning.App.ViewModels"
+             xmlns:models="clr-namespace:Learning.App.Models"
+             x:DataType="vm:MainViewModel">
     <VerticalStackLayout
             Padding="0"
             Spacing="25"
@@ -32,6 +35,36 @@
             <Entry HorizontalOptions="Fill" Placeholder="wyszukaj"/>
             <ImageButton Grid.Column="1" Source="search.png"/>
         </Grid>
+        <CollectionView ItemsSource="{Binding Materials}" 
+                            VerticalOptions="Fill"
+                            
+                            HeightRequest="500">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="5"
+                    Orientation="Vertical"
+                    Span="4"
+                    VerticalItemSpacing="5" />
+
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:AbstractMaterial">
+                    <Border HeightRequest="150" 
+                            WidthRequest="150"
+                            Padding="10">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout>
+                            <Label HorizontalOptions="Center"
+                                   Text="{Binding Title}"/>
+                            <Label HorizontalOptions="Center"
+                                   Text="{Binding CreatorLogin, StringFormat='Stworzono przez {0}'}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
     </VerticalStackLayout>
 </ContentPage>

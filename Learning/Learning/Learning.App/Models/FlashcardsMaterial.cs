@@ -26,7 +26,7 @@ namespace Learning.App.Models
         {
             if (reviews == null)
                 foreach (var card in flashcards)
-                    reviews.Add(card.Copy());
+                    reviews.Add(card.Copy());//tworzymy kopie żeby nie stracić fiszek i nie trzebaby ich jeszcze raz wczytywać z bazy
             if (reviews.Count == 0)
                 throw new FlashcardsReviewEndedException();
             currentFlashCardIndex++;
