@@ -1,36 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Learning.App.Views.MainPage">
+             x:Class="Learning.App.Views.MainPage"
+             xmlns:vm="clr-namespace:Learning.App.ViewModels"
+             xmlns:models="clr-namespace:Learning.App.Models"
+             x:DataType="vm:MainViewModel">
+    <VerticalStackLayout
+            Padding="0"
+            Spacing="25"
+            HorizontalOptions="Fill">
+        <Grid ColumnDefinitions="150,*"
+              RowDefinitions="150" 
+              HorizontalOptions="Fill">
+            <Image Source="dotnet_bot.png"/>
+            <Label 
+                    Grid.Column="1"
+                    Text="Daniel Bawi i Uczy"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center" />
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+        </Grid>
+        <Grid   ColumnDefinitions="*,*,*"
+                RowDefinitions="50" 
+                HorizontalOptions="Fill">
+            <Button Text="twoje materiały"/>
+            <Button Grid.Column="1" Text="coś"/>
+            <Button Grid.Column="2" Text="konto"/>
+        </Grid>
+        <Grid   ColumnDefinitions="*,50"
+                RowDefinitions="50" 
+                HorizontalOptions="Fill">
+            <Entry HorizontalOptions="Fill" Placeholder="wyszukaj"/>
+            <ImageButton Grid.Column="1" Source="search.png"/>
+        </Grid>
+        <CollectionView ItemsSource="{Binding Materials}" 
+                            VerticalOptions="Fill"
+                            
+                            HeightRequest="500">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="5"
+                    Orientation="Vertical"
+                    Span="4"
+                    VerticalItemSpacing="5" />
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:AbstractMaterial">
+                    <Border HeightRequest="150" 
+                            WidthRequest="150"
+                            Padding="10">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout>
+                            <Label HorizontalOptions="Center"
+                                   Text="{Binding Title}"/>
+                            <Label HorizontalOptions="Center"
+                                   Text="{Binding CreatorLogin, StringFormat='Stworzono przez {0}'}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
-        </VerticalStackLayout>
-    </ScrollView>
-
+    </VerticalStackLayout>
 </ContentPage>
