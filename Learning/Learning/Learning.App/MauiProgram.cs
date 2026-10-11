@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Learning.App.ViewModels;
+using Learning.App.Views;
+using Microsoft.Extensions.Logging;
 
 namespace Learning.App
 {
@@ -18,6 +20,8 @@ namespace Learning.App
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddSingleton<MainPage>();
 
             return builder.Build();
         }
