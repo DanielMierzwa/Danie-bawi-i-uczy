@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Learning.App.Models;
+using Learning.App.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +20,12 @@ namespace Learning.App.ViewModels
             Materials.Add(new QuizMaterial(2, false, "Mietek", "Quiz 2", new List<int>() { 1 }));
             Materials.Add(new FlashcardsMaterial(3, true, "Staś", "Fiszki 1", new List<int>() { 2 }));
             Materials.Add(new FlashcardsMaterial(4, false, "Jerzy", "Fiszki 2", new List<int>() { 1, 2 }));
-        }
+
+           
+        } 
+        [RelayCommand]
+            async void GoToFlashcardEditor(){
+                await Shell.Current.GoToAsync(nameof(FlashcardEditorPage));
+            }
     }
 }

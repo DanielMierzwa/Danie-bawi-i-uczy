@@ -26,8 +26,9 @@
                 RowDefinitions="50" 
                 HorizontalOptions="Fill">
             <Button Text="twoje materiały"/>
-            <Button Grid.Column="1" Text="coś"/>
+            <Button Grid.Column="1" Text="Edytor" Command="{Binding GoToFlashcardEditorCommand}"/>
             <Button Grid.Column="2" Text="konto"/>
+            
         </Grid>
         <Grid   ColumnDefinitions="*,50"
                 RowDefinitions="50" 
@@ -65,6 +66,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
+        
     </VerticalStackLayout>
 </ContentPage>

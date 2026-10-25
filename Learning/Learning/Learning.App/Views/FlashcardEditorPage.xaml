@@ -4,9 +4,29 @@
              x:Class="Learning.App.Views.FlashcardEditorPage"
              Title="FlashcardEditorPage">
     <VerticalStackLayout>
-        <Label 
-            Text="edytor"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid ColumnDefinitions="auto,*,auto" RowDefinitions="auto,*" Padding="25">
+            <HorizontalStackLayout Grid.Row="0" Grid.Column="0" Spacing="15">
+                <ImageButton HeightRequest="10" Source="left_arrow.png" Command="{Binding BackButtonCommand}"/>
+                <ImageButton HeightRequest="10" Source="right_arrow.png" Command="{Binding NextButtonCommand}"/>
+                <ImageButton HeightRequest="10" Source="close.png" Command="{Binding DeleteCardCommand}"/>
+            </HorizontalStackLayout>
+            <Label Text="{Binding CurrentCardIndex}" Grid.Row="0" HorizontalTextAlignment="Center" FontSize="20" Grid.Column="1"/>
+            <HorizontalStackLayout Grid.Row="0" Grid.Column="2" Spacing="15">
+                
+                <Button Text="Wyjdź" Command="{Binding ExitEditorCommand}"/>
+                <Button Text="Zapisz" Command="{Binding SaveCardsCommand}"/>
+                <ImageButton HeightRequest="10" Source="plus.png" Command="{Binding AddCardCommand}"/>
+                
+            </HorizontalStackLayout>
+
+            <Border Grid.Row="1" Grid.Column="1" Padding="10" StrokeShape="RoundRectangle12" Margin="40">
+                <VerticalStackLayout Padding="20" Spacing="20">
+                    <Label Text="Przód"  FontSize="20"/>
+                    <Entry Text="{Binding FrontValue}" Placeholder="Wprowadź przód karty"/>
+                    <Label Text="Tył"   FontSize="20"/>
+                    <Entry Text="{Binding BackValue}" Placeholder="Wprowadź tył karty"/>
+                </VerticalStackLayout>
+                </Border>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>
