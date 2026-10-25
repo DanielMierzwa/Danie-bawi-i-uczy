@@ -73,4 +73,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Views\User_View\" />
+	</ItemGroup>
+
 </Project>

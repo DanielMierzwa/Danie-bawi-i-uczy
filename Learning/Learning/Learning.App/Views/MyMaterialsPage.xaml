@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Learning.App.Views.MyMaterialsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Twoje materiały">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="16" RowSpacing="12">
+        <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="8">
+            <Button Grid.Column="0" Text="Strona główna" FontSize="12" Padding="4,10"
+                    Clicked="OnHomeClicked" />
+            <Button Grid.Column="2" Text="Konto" FontSize="12" Padding="4,10"
+                    Clicked="OnAccountClicked" />
+        </Grid>
+
+        <SearchBar Grid.Row="1" Placeholder="Wyszukaj swoje materiały..."
+                   SearchButtonPressed="OnSearchPressed" />
+
+        <Border Grid.Row="2" Stroke="{DynamicResource Primary}" StrokeThickness="1"
+                StrokeShape="RoundRectangle 12" Padding="16">
+            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+                <Label Text="Materiały twoje" FontSize="20" FontAttributes="Bold"
+                       TextColor="{DynamicResource Primary}" HorizontalOptions="Center" />
+                <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="Twoje zestawy, quizy, fiszki i notatki pojawią się tutaj."
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Lista materiałów — placeholder" FontSize="12" Opacity="0.7"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+                <Button Grid.Row="2" Text="Dodaj materiał" HorizontalOptions="Center"
+                        WidthRequest="220" Clicked="OnAddClicked" />
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

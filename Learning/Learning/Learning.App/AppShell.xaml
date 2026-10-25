@@ -11,13 +11,6 @@
         Title="Home"
         ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />
-    <ShellContent
-    Title="Użytkownik"
-    ContentTemplate="{DataTemplate views:UserMenuPage}"
-    Route="UserMenuPage" />
-    <ShellContent
-    Title="edytor"
-    ContentTemplate="{DataTemplate views:FlashcardEditorPage}"
-    Route="FlashcardEditorPage" />
+ 
 
 </Shell>

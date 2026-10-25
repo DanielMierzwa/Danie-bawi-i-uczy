@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Learning.App.Views.MaterialDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Materiał">
+
+    <Grid Padding="20" RowDefinitions="Auto,*" RowSpacing="20">
+        <Button Text="Wróć" HorizontalOptions="Start" WidthRequest="120"
+                Clicked="OnBackClicked" />
+        <VerticalStackLayout Grid.Row="1" Spacing="18" VerticalOptions="Start"
+                             HorizontalOptions="Center" WidthRequest="220">
+            <Label Text="Wybierz tryb nauki" FontSize="20" FontAttributes="Bold"
+                   TextColor="{DynamicResource Primary}" HorizontalTextAlignment="Center" />
+            <Button Text="Quiz" HeightRequest="62" Clicked="OnQuizClicked" />
+            <Button Text="Fiszki" HeightRequest="62" Clicked="OnFlashcardsClicked" />
+            <Button Text="Notatka" HeightRequest="62" Clicked="OnNoteClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

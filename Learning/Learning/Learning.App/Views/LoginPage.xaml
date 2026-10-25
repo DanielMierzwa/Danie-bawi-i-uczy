@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Learning.App.Views.LoginPage"
+ xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Title="Logowanie">
+ <ScrollView><Grid Padding="24" RowDefinitions="Auto,*" RowSpacing="24">
+  <Button Text="Wróć" HorizontalOptions="Start" WidthRequest="110" Clicked="OnBackClicked"/>
+  <VerticalStackLayout Grid.Row="1" Spacing="18" VerticalOptions="Center" MaximumWidthRequest="420" HorizontalOptions="Center">
+   <Border WidthRequest="82" HeightRequest="82" Stroke="{DynamicResource Primary}" StrokeThickness="2" StrokeShape="RoundRectangle 22" HorizontalOptions="Center">
+    <Label Text="DBiU" FontSize="22" FontAttributes="Bold" TextColor="{DynamicResource Primary}" HorizontalOptions="Center" VerticalOptions="Center"/>
+   </Border>
+   <Label Text="Witaj ponownie!" FontSize="28" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+   <Label Text="Zaloguj się, aby wrócić do swoich materiałów." HorizontalTextAlignment="Center" TextColor="{AppThemeBinding Light=Gray, Dark=LightGray}"/>
+   <VerticalStackLayout Spacing="6"><Label Text="E-mail"/><Entry x:Name="EmailEntry" Placeholder="adres@email.com" Keyboard="Email"/></VerticalStackLayout>
+   <VerticalStackLayout Spacing="6"><Label Text="Hasło"/><Entry x:Name="PasswordEntry" Placeholder="Wpisz hasło" IsPassword="True"/></VerticalStackLayout>
+   <Button Text="Zaloguj się" HeightRequest="50" Clicked="OnLoginClicked"/>
+   <HorizontalStackLayout HorizontalOptions="Center" Spacing="4"><Label Text="Nie masz konta?" VerticalOptions="Center"/>
+    <Button Text="Zarejestruj się" Padding="4,0" BackgroundColor="Transparent" TextColor="{DynamicResource Primary}" Clicked="OnRegisterClicked"/>
+   </HorizontalStackLayout>
+  </VerticalStackLayout>
+ </Grid></ScrollView>
+</ContentPage>
