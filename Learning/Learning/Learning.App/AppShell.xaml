@@ -16,8 +16,13 @@
     ContentTemplate="{DataTemplate views:UserMenuPage}"
     Route="UserMenuPage" />
     <ShellContent
-    Title="edytor"
-    ContentTemplate="{DataTemplate views:FlashcardEditorPage}"
-    Route="FlashcardEditorPage" />
+        Title="Edytor quizu"
+        ContentTemplate="{DataTemplate views:QuizEditorPage}"
+        Route="QuizEditorPage" />
+    <ShellContent
+        Title="Zapis quizu"
+        Shell.FlyoutItemIsVisible="False"
+        ContentTemplate="{DataTemplate views:QuizSavePage}"
+        Route="QuizSavePage" />
 
 </Shell>

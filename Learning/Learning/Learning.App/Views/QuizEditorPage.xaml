@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Learning.App.Views.QuizEditorPage"
+             Title="Edytor quizu">
+
+    <!--
+        Viewmodel jeszcze nie istnieje - bindingi są przygotowane pod niego (bez x:DataType,
+        żeby się kompilowało). FallbackValue to wartość widoczna w podglądzie, dopóki nie ma viewmodelu.
+        Popupy (usuń pytanie, wyjdź, wybór typu pytania) będą w kodzie przez DisplayAlert / DisplayActionSheet.
+        Blokowanie przycisków robi CanExecute komend.
+        Formularz zamknięty i otwarty przełączają flagi IsClosedQuestion / IsOpenQuestion.
+    -->
+    <Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="16">
+
+        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+
+            <HorizontalStackLayout Spacing="4">
+                <ImageButton Style="{StaticResource IconButton}" Source="arrow_left.png"
+                             Command="{Binding PreviousQuestionCommand}" />
+                <ImageButton Style="{StaticResource IconButton}" Source="arrow_right.png"
+                             Command="{Binding NextQuestionCommand}" />
+                <ImageButton Style="{StaticResource IconButton}" Source="close.png"
+                             Command="{Binding DeleteQuestionCommand}" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Column="1" Style="{StaticResource FormCaption}"
+                   Text="{Binding QuestionCounterText, FallbackValue='pytanie 1 / 1'}" />
+
+            <HorizontalStackLayout Grid.Column="2" Spacing="8">
+                <Button Style="{StaticResource SecondaryButton}" Text="wyjdź"
+                        Command="{Binding ExitCommand}" VerticalOptions="Center" />
+                <Button Text="zapisz"
+                        Command="{Binding SaveCommand}" VerticalOptions="Center" />
+                <ImageButton Style="{StaticResource IconButton}" Source="plus.png"
+                             Command="{Binding AddQuestionCommand}" />
+            </HorizontalStackLayout>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <Grid>
+
+                <Border Style="{StaticResource FormCard}" VerticalOptions="Start"
+                        IsVisible="{Binding IsClosedQuestion, FallbackValue=True}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Entry Placeholder="pytanie" Text="{Binding QuestionText}" />
+                        </Border>
+
+                        <VerticalStackLayout Spacing="12" BindableLayout.ItemsSource="{Binding Answers}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                        <CheckBox IsChecked="{Binding IsCorrect}" />
+                                        <Border Grid.Column="1" Style="{StaticResource FieldBorder}">
+                                            <Entry Placeholder="odpowiedź" Text="{Binding Text}" />
+                                        </Border>
+                                        <ImageButton Grid.Column="2"
+                                                     Style="{StaticResource IconButton}"
+                                                     Source="close.png"
+                                                     Command="{Binding BindingContext.DeleteAnswerCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                                     CommandParameter="{Binding .}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+
+                        <ImageButton Style="{StaticResource IconButton}" Source="plus.png"
+                                     HorizontalOptions="Center"
+                                     Command="{Binding AddAnswerCommand}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource FormCard}" VerticalOptions="Start"
+                        IsVisible="{Binding IsOpenQuestion, FallbackValue=False}">
+                    <VerticalStackLayout Spacing="12">
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Entry Placeholder="pytanie" Text="{Binding QuestionText}" />
+                        </Border>
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Entry Placeholder="odpowiedź" Text="{Binding OpenAnswerText}" />
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

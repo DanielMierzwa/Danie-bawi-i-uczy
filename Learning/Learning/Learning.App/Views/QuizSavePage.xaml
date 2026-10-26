@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Learning.App.Views.QuizSavePage"
+             Title="Zapis quizu">
+
+    <ScrollView>
+        <Border Style="{StaticResource FormCard}" Margin="16" VerticalOptions="Center">
+            <VerticalStackLayout Spacing="12">
+
+                <Label Style="{StaticResource FormCaption}" Text="Zapisz quiz" />
+
+                <Border Style="{StaticResource FieldBorder}">
+                    <Entry Placeholder="tytuł" Text="{Binding QuizTitle}" />
+                </Border>
+
+                <Border Style="{StaticResource FieldBorder}">
+                    <Picker Title="kategoria"
+                            ItemsSource="{Binding Categories}"
+                            SelectedItem="{Binding SelectedCategory}" />
+                </Border>
+
+                <Border Style="{StaticResource FieldBorder}">
+                    <Editor Placeholder="opis" Text="{Binding Description}" HeightRequest="160" />
+                </Border>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Button Text="zapisz" Command="{Binding SaveQuizCommand}" />
+                    <Button Grid.Column="1" Style="{StaticResource SecondaryButton}"
+                            Text="back" Command="{Binding BackCommand}" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </ScrollView>
+</ContentPage>
