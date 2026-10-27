@@ -8,12 +8,12 @@ namespace Learning.App.Models
 {
     public class Flashcard
     {
-        public string Top;
-        public string Bottom;
+        public string Front;
+        public string Back;
 
         public Flashcard Copy()
         {
-            return new Flashcard() { Bottom = this.Bottom, Top = this.Top };
+            return new Flashcard() { Back = this.Back, Front = this.Front };
         }
     }
 }

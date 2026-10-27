@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Learning.App.Views.SaveFlashcard"
+             Title="SaveFlashcard">
+    <VerticalStackLayout>
+        <Grid ColumnDefinitions="*" RowDefinitions="*">
+        <Border HorizontalOptions="Center" Padding="30" Grid.Column="0" Grid.Row="0">
+            <VerticalStackLayout>
+                <Label Text="Podaj dane Fiszek" HorizontalTextAlignment="Center" FontSize="20"/>
+                <Label Text="Tytuł:"/>
+                <Entry Placeholder="Wprowadź tytuł fiszki" Text="{Binding Title}" />
+                <Label Text="Kategoria:"/>
+                    <Picker Title="Wybierz opcję" SelectedIndex="{Binding Category}">
+
+                        <Picker.Items>
+                        <x:String>Opcja 1</x:String>
+                        <x:String>Opcja 2</x:String>
+                        <x:String>Opcja 3</x:String>
+                    </Picker.Items>
+                </Picker>
+                    <HorizontalStackLayout> 
+                    <Label Text="Publiczna:"/>
+                    <CheckBox IsChecked="{Binding IsPublic}"/>
+                    </HorizontalStackLayout>
+               
+                    <Label Text="Opis:"/>
+                <Entry Placeholder="Wprowadź opis fiszki" Text="{Binding Description}"/>
+                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Button Text="Zapisz" Command="{Binding SaveCommand}"/>
+                        <Button Text="Anuluj" Command="{Binding CancelCommand}"/>
+                    </HorizontalStackLayout>
+
+
+
+
+                </VerticalStackLayout>
+        </Border>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -27,8 +27,10 @@
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*" ColumnSpacing="8">
             <Button Grid.Column="0" Text="Twoje materiały" FontSize="12" Padding="6,10"
                     Clicked="OnMyMaterialsClicked" />
+            <Button Grid.Column="1" Text="Coś"/>
             <Button Grid.Column="2" Text="Konto" FontSize="12" Padding="6,10"
                     Clicked="OnAccountClicked" />
+
         </Grid>
 
         <!-- Wyszukiwarka -->
@@ -55,7 +57,6 @@
 								Orientation="Vertical"
 								Span="4"
 								VerticalItemSpacing="5" />
-
 						</CollectionView.ItemsLayout>
 						<CollectionView.ItemTemplate>
 							<DataTemplate x:DataType="models:AbstractMaterial">
@@ -79,4 +80,5 @@
             </Grid>
         </Border>
     </Grid>
+
 </ContentPage>
