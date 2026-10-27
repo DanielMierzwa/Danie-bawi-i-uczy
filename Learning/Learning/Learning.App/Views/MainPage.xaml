@@ -26,16 +26,15 @@
         <!-- Nawigacja -->
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*" ColumnSpacing="8">
             <Button Grid.Column="0" Text="Twoje materiały" FontSize="12" Padding="6,10"
-                    Clicked="OnMyMaterialsClicked" />
+                    Command="{Binding MyMaterialsCommand}" />
             <Button Grid.Column="1" Text="Coś"/>
             <Button Grid.Column="2" Text="Konto" FontSize="12" Padding="6,10"
-                    Clicked="OnAccountClicked" />
+                    Command="{Binding AccountCommand}" />
 
         </Grid>
 
         <!-- Wyszukiwarka -->
-        <SearchBar Grid.Row="2" Placeholder="Wyszukaj materiały..."
-                   SearchButtonPressed="OnSearchPressed" />
+        <SearchBar Grid.Row="2" Placeholder="Wyszukaj materiały..." />
 
         <!-- Materiały publiczne -->
         <Border Grid.Row="3" Stroke="{DynamicResource Primary}" StrokeThickness="1"
