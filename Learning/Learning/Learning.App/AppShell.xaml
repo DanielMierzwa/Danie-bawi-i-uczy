@@ -12,10 +12,6 @@
         ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />
     <ShellContent
-    Title="Użytkownik"
-    ContentTemplate="{DataTemplate views:UserMenuPage}"
-    Route="UserMenuPage" />
-    <ShellContent
         Title="Edytor quizu"
         ContentTemplate="{DataTemplate views:QuizEditorPage}"
         Route="QuizEditorPage" />
