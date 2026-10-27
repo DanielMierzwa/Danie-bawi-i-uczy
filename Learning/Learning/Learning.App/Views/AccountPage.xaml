@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Learning.App.Views.AccountPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Konto">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="18">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                <Border WidthRequest="92" HeightRequest="92" Stroke="{DynamicResource Primary}"
+                        StrokeThickness="2" StrokeShape="Ellipse" BackgroundColor="{AppThemeBinding Light=#F3F0FF, Dark=#29223F}">
+                    <Label Text="Zdjęcie" FontSize="12" HorizontalOptions="Center"
+                           VerticalOptions="Center" TextColor="{DynamicResource Primary}" />
+                </Border>
+                <Button Grid.Column="1" Text="Wróć" VerticalOptions="Start"
+                        HorizontalOptions="End" WidthRequest="110" Clicked="OnBackClicked" />
+            </Grid>
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Nazwa" />
+                <Entry x:Name="NameEntry" Placeholder="Twoja nazwa" Text="Użytkownik" />
+                <Label Text="E-mail" />
+                <Entry x:Name="EmailEntry" Placeholder="adres@email.com"
+                       Keyboard="Email" Text="uzytkownik@email.com" />
+                <Label Text="Hasło" />
+                <Entry x:Name="PasswordEntry" Placeholder="Hasło" IsPassword="True"
+                       Text="haslo123" />
+            </VerticalStackLayout>
+
+            <Border Stroke="{DynamicResource Primary}" StrokeThickness="1"
+                    StrokeShape="RoundRectangle 12" Padding="14">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Statystyki nauki" FontSize="18" FontAttributes="Bold"
+                           TextColor="{DynamicResource Primary}" />
+                    <Label Text="Czas nauki: —" />
+                    <Label Text="Rozwiązane quizy: —" />
+                    <Label Text="Powtórzone fiszki: —" />
+                    <Label Text="Skuteczność odpowiedzi: —" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button x:Name="EditButton" Text="Edytuj" HorizontalOptions="Center" WidthRequest="160"
+                    Clicked="OnEditClicked" />
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button Text="Logowanie" Clicked="OnLoginClicked" />
+                <Button Text="Rejestracja" Clicked="OnRegisterClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
