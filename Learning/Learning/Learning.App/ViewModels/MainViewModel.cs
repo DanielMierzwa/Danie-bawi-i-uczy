@@ -3,12 +3,44 @@ using CommunityToolkit.Mvvm.Input;
 using Learning.App.Models;
 using Learning.App.Views;
 using System.Collections.ObjectModel;
+using Learning.App.ViewModels;
 
 namespace Learning.App.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-    
+        [ObservableProperty]
+        private bool _MaterialsVisible = false;
+        [ObservableProperty]
+        private bool _UtworzKontoVisible = true;
+        [ObservableProperty]
+        private bool _KontoVisible = false;
+        [ObservableProperty]
+        private string _UserToken;
+
+        public void ProfileViewModel()
+        {
+            // Wywołujemy asynchroniczną metodę ładowania tokenu
+            LoadTokenAsync();
+        }
+
+        private async void LoadTokenAsync()
+        {
+            // Pobieramy bezpiecznie token zapisany wcześniej w MainViewModel
+            _UserToken = await SecureStorage.Default.GetAsync("oauth_token");
+        }
+        partial void OnUserTokenChanging(string value)
+        { ///Do dokonczenia
+            if (value== null) 
+            {
+                _MaterialsVisible = true;
+                _KontoVisible =true;
+                _UtworzKontoVisible = false;
+            }
+
+
+        }
+
 
         public ObservableCollection<AbstractMaterial> Materials { get; set; } = new();
 
@@ -33,7 +65,6 @@ namespace Learning.App.ViewModels
         [RelayCommand]
         private async Task Account()
         {
-            Console.Write("XDD");
             await Shell.Current.GoToAsync("///"+nameof(AccountPage));
         }
 
@@ -42,8 +73,17 @@ namespace Learning.App.ViewModels
         {
             // TODO: podłączyć wyszukiwanie materiałów.
         }
+        [RelayCommand]
+        private async Task Register()
+        {
+            await Shell.Current.GoToAsync("///" + nameof(RegisterPage));
+        }
+        [RelayCommand]
+        private async Task Loguj()
+        {
+            await Shell.Current.GoToAsync("///" + nameof(LoginPage));
+        }
 
-        
     }
 }
 

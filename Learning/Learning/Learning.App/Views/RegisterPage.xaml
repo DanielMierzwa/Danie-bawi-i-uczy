@@ -3,7 +3,7 @@
  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Title="Rejestracja">
  <ScrollView><Grid Padding="24" RowDefinitions="Auto,*" RowSpacing="20">
-  <Button Text="Wróć" HorizontalOptions="Start" WidthRequest="110" Clicked="OnBackClicked"/>
+  <Button Text="Wróć" HorizontalOptions="Start" WidthRequest="110"/>
   <VerticalStackLayout Grid.Row="1" Spacing="15" VerticalOptions="Center" MaximumWidthRequest="420" HorizontalOptions="Center">
    <Border WidthRequest="76" HeightRequest="76" Stroke="{DynamicResource Primary}" StrokeThickness="2" StrokeShape="RoundRectangle 20" HorizontalOptions="Center">
     <Label Text="DBiU" FontSize="20" FontAttributes="Bold" TextColor="{DynamicResource Primary}" HorizontalOptions="Center" VerticalOptions="Center"/>
@@ -14,9 +14,9 @@
    <VerticalStackLayout Spacing="6"><Label Text="E-mail"/><Entry x:Name="EmailEntry" Placeholder="adres@email.com" Keyboard="Email"/></VerticalStackLayout>
    <VerticalStackLayout Spacing="6"><Label Text="Hasło"/><Entry x:Name="PasswordEntry" Placeholder="Utwórz hasło" IsPassword="True"/></VerticalStackLayout>
    <VerticalStackLayout Spacing="6"><Label Text="Powtórz hasło"/><Entry x:Name="ConfirmPasswordEntry" Placeholder="Wpisz hasło ponownie" IsPassword="True"/></VerticalStackLayout>
-   <Button Text="Zarejestruj się" HeightRequest="50" Clicked="OnRegisterClicked"/>
+   <Button Text="Zarejestruj się" HeightRequest="50" />
    <HorizontalStackLayout HorizontalOptions="Center" Spacing="4"><Label Text="Masz już konto?" VerticalOptions="Center"/>
-    <Button Text="Zaloguj się" Padding="4,0" BackgroundColor="Transparent" TextColor="{DynamicResource Primary}" Clicked="OnLoginClicked"/>
+    <Button Text="Zaloguj się" Padding="4,0" BackgroundColor="Transparent" TextColor="{DynamicResource Primary}" />
    </HorizontalStackLayout>
   </VerticalStackLayout>
  </Grid></ScrollView>

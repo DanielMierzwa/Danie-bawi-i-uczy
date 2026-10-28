@@ -31,10 +31,12 @@ namespace Learning.App
             builder.Services.AddSingleton<FlashcardEditorPage>();
             builder.Services.AddSingleton<SaveFlashcardViewModel>();
             builder.Services.AddSingleton<SaveFlashcard>();
-
-            builder.Services.AddSingleton<QuizEditorViewModel>();
             builder.Services.AddSingleton<QuizEditorPage>();
             builder.Services.AddSingleton<QuizSavePage>();
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<LoginPageViewModel>();
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<RegisterPageViewModel>();
 
             return builder.Build();
         }
