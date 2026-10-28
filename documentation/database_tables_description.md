@@ -80,8 +80,10 @@ Główne jednostki edukacyjne (zestawy quizowe lub fiszki).
 | `Title` | `string` | `MaxLength: 200`, `Required` | Tytuł materiału. |
 | `Type` | `string` | `Required` | Typ materiału (`"Quiz"` lub `"Flashcard"`). |
 | `IsPublic` | `bool` | `Domyślnie: false` | Status widoczności (`false` = prywatny, `true` = publiczny). |
+| `Description` | `string` | `-` | Opis materiału |
 | `UserId` | `int` | `Foreign Key -> Users.Id` | Klucz obcy twórcy materiału. |
 | `SubjectId` | `int` | `Foreign Key -> Subjects.Id` | Klucz obcy powiązanego przedmiotu. |
+
 
 - **Powiązania nawigacyjne:** Kolekcja `Questions`.
 
