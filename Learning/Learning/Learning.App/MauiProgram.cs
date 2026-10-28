@@ -1,4 +1,4 @@
-using Learning.App.ViewModels;
+﻿using Learning.App.ViewModels;
 using Learning.App.Views;
 using Microsoft.Extensions.Logging;
 
@@ -24,7 +24,6 @@ namespace Learning.App
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<AccountPageViewModel>();
             builder.Services.AddSingleton<AccountPage>();
-            builder.Services.AddSingleton<AccountPageViewModel>();
             builder.Services.AddSingleton<MyMaterialsPage>();
             builder.Services.AddSingleton<MyMaterialsPageViewModel>();
             builder.Services.AddSingleton<FlashcardEditorViewModel>();
