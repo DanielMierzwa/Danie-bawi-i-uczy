@@ -3,6 +3,9 @@
     x:Class="Learning.App.Views.AccountPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Learning.App.ViewModels"
+    xmlns:models="clr-namespace:Learning.App.Models"
+    x:DataType="vm:AccountPageViewModel"
     Title="Konto">
 
     <ScrollView>
@@ -14,18 +17,18 @@
                            VerticalOptions="Center" TextColor="{DynamicResource Primary}" />
                 </Border>
                 <Button Grid.Column="1" Text="Wróć" VerticalOptions="Start"
-                        HorizontalOptions="End" WidthRequest="110" Clicked="OnBackClicked" />
+                        HorizontalOptions="End" WidthRequest="110" Command="{Binding BackCommand}" />
             </Grid>
 
             <VerticalStackLayout Spacing="10">
                 <Label Text="Nazwa" />
-                <Entry x:Name="NameEntry" Placeholder="Twoja nazwa" Text="Użytkownik" />
+                <Entry x:Name="NameEntry" Placeholder="Twoja nazwa" Text="{Binding NameEntry}" IsReadOnly="{Binding IsEntryReadOnly}" />
                 <Label Text="E-mail" />
                 <Entry x:Name="EmailEntry" Placeholder="adres@email.com"
-                       Keyboard="Email" Text="uzytkownik@email.com" />
+                       Keyboard="Email" Text="{Binding EmailEntry}" IsReadOnly="{Binding IsEntryReadOnly}" />
                 <Label Text="Hasło" />
                 <Entry x:Name="PasswordEntry" Placeholder="Hasło" IsPassword="True"
-                       Text="haslo123" />
+                       Text="{Binding PasswordEntry}" IsReadOnly="{Binding IsEntryReadOnly}" />
             </VerticalStackLayout>
 
             <Border Stroke="{DynamicResource Primary}" StrokeThickness="1"
@@ -40,11 +43,11 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Button x:Name="EditButton" Text="Edytuj" HorizontalOptions="Center" WidthRequest="160"
-                    Clicked="OnEditClicked" />
+            <Button x:Name="EditButton" Text="{Binding EditButtonText}" HorizontalOptions="Center" WidthRequest="160"
+                    Command="{Binding OnEditCommand}" />
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-                <Button Text="Logowanie" Clicked="OnLoginClicked" />
-                <Button Text="Rejestracja" Clicked="OnRegisterClicked" />
+                <Button Text="Logowanie" Command="{Binding OnLoginCommand}" />
+                <Button Text="Rejestracja" Command="{Binding OnRegisterCommand}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

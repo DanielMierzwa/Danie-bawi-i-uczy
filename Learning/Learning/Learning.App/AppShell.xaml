@@ -7,18 +7,50 @@
     xmlns:views="clr-namespace:Learning.App.Views"
     Title="Learning.App">
 
+    <!-- Główna strona -->
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />
+
+    <!-- Pozostałe strony główne -->
+    <ShellContent
+        Title="Moje materiały"
+        ContentTemplate="{DataTemplate views:MyMaterialsPage}"
+        Route="MyMaterialsPage"
+         />
+    <ShellContent
+        Title="Konto"
+        ContentTemplate="{DataTemplate views:AccountPage}"
+        Route="AccountPage"
+        />
+
+    <!-- Pozostałe strony poza menu -->
     <ShellContent
         Title="Edytor quizu"
         ContentTemplate="{DataTemplate views:QuizEditorPage}"
-        Route="QuizEditorPage" />
+        Route="QuizEditorPage"
+         />
     <ShellContent
         Title="Zapis quizu"
-        Shell.FlyoutItemIsVisible="False"
         ContentTemplate="{DataTemplate views:QuizSavePage}"
-        Route="QuizSavePage" />
+        Route="QuizSavePage"/>
+    <ShellContent
+      Title="Edytor quizu"
+      ContentTemplate="{DataTemplate views:FlashcardEditorPage}"
+      Route="FlashcardEditorPage"
+       />
+    <ShellContent
+      Title="Zapis quizu"
+      ContentTemplate="{DataTemplate views:SaveFlashcard}"
+      Route="SaveFlashCard" />
+    <ShellContent
+        Title="Logowanie"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="LoginPage" />
+    <ShellContent
+        Title="Rejestracja"
+        ContentTemplate="{DataTemplate views:RegisterPage}"
+        Route="RegisterPage" />
 
 </Shell>

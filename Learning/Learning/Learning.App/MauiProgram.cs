@@ -22,10 +22,18 @@ namespace Learning.App
 #endif
             builder.Services.AddSingleton<MainViewModel>();
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<AccountPageViewModel>();
+            builder.Services.AddSingleton<AccountPage>();
+            builder.Services.AddSingleton<MyMaterialsPage>();
+            builder.Services.AddSingleton<MyMaterialsPageViewModel>();
             builder.Services.AddSingleton<FlashcardEditorViewModel>();
             builder.Services.AddSingleton<FlashcardEditorPage>();
             builder.Services.AddSingleton<SaveFlashcardViewModel>();
             builder.Services.AddSingleton<SaveFlashcard>();
+
+            builder.Services.AddSingleton<QuizEditorViewModel>();
+            builder.Services.AddSingleton<QuizEditorPage>();
+            builder.Services.AddSingleton<QuizSavePage>();
 
             return builder.Build();
         }

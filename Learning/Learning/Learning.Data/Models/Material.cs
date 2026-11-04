@@ -18,6 +18,7 @@ public class Material
 
     public string Description { get; set; } // Opis materiału   
 
+
     // Relacje
     public int UserId { get; set; }
     public User User { get; set; }
