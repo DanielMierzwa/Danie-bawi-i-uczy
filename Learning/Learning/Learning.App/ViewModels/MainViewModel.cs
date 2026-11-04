@@ -4,56 +4,47 @@ using Learning.App.Models;
 using Learning.App.Views;
 using System.Collections.ObjectModel;
 using Learning.App.ViewModels;
+using Learning.App.Services;
 
 namespace Learning.App.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
-        private bool _MaterialsVisible = false;
+        private bool _materialsVisible = false;
         [ObservableProperty]
-        private bool _UtworzKontoVisible = true;
+        private bool _utworzKontoVisible = true;
         [ObservableProperty]
-        private bool _KontoVisible = false;
+        private bool _kontoVisible = false;
         [ObservableProperty]
-        private string _UserToken;
-
-        public void ProfileViewModel()
-        {
-            // Wywołujemy asynchroniczną metodę ładowania tokenu
-            LoadTokenAsync();
-        }
-
-        private async void LoadTokenAsync()
-        {
-            // Pobieramy bezpiecznie token zapisany wcześniej w MainViewModel
-            _UserToken = await SecureStorage.Default.GetAsync("oauth_token");
-        }
-        partial void OnUserTokenChanging(string value)
-        { ///Do dokonczenia
-            if (value== null) 
-            {
-                _MaterialsVisible = true;
-                _KontoVisible =true;
-                _UtworzKontoVisible = false;
-            }
-
-
-        }
-
-
+        private string _userToken;
+  
         public ObservableCollection<AbstractMaterial> Materials { get; set; } = new();
 
-        public MainViewModel()
+        private readonly AuthService _authService;
+        public MainViewModel(AuthService authService)
         {
-           
+            _authService = authService;
 
             Materials.Add(new QuizMaterial(1, true, "Anatol", "Quiz 1", new List<int>() { 1, 2 }));
             Materials.Add(new QuizMaterial(2, false, "Mietek", "Quiz 2", new List<int>() { 1 }));
             Materials.Add(new FlashcardsMaterial(3, true, "Staś", "Fiszki 1", new List<int>() { 2 }));
             Materials.Add(new FlashcardsMaterial(4, false, "Jerzy", "Fiszki 2", new List<int>() { 1, 2 }));
-        
-        
+        }
+        public void LoadToken()
+        {
+            var token = _authService.GetToken();
+            if (!string.IsNullOrEmpty(token))
+            {
+                // Token istnieje – możesz go użyć np. do autoryzacji zapytania HTTP
+                MaterialsVisible = true;
+                KontoVisible = true;
+                UtworzKontoVisible = false;
+            }
+            else
+            {
+                // Brak tokenu – użytkownik prawdopodobnie nie jest zalogowany
+            }
         }
 
         [RelayCommand]

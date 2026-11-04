@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Learning.App.Services;
 using Learning.App.Views;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,11 @@ namespace Learning.App.ViewModels
 {
     public partial class LoginPageViewModel : ObservableObject
     {
-        // Zapisywanie tokenu sesji
-        string? oauthToken;
-
+        private readonly AuthService _authService;
+        public LoginPageViewModel(AuthService authService)
+        {
+            _authService = authService;
+        }
 
         [RelayCommand]
         private async Task Register()
@@ -22,13 +25,10 @@ namespace Learning.App.ViewModels
         }
         [RelayCommand]
         private async Task Login()
-
         {
-            await SecureStorage.Default.SetAsync("oauth_token", "twoj_kod_jwt");
-
-            // Odczytywanie tokenu sesji
-            oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
-
+            var token = "twoj_kod_jwt";
+            await SecureStorage.Default.SetAsync("oauth_token", token);
+            _authService.SetToken(token);
             await Shell.Current.GoToAsync("///" + nameof(MainPage));
         }
         [RelayCommand]

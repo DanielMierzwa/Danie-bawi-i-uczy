@@ -1,3 +1,4 @@
+using Learning.App.Services;
 using Learning.App.ViewModels;
 using Learning.App.Views;
 using Microsoft.Extensions.Logging;
@@ -37,6 +38,7 @@ namespace Learning.App
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<RegisterPage>();
             builder.Services.AddSingleton<RegisterPageViewModel>();
+            builder.Services.AddSingleton<AuthService>();
 
             return builder.Build();
         }
