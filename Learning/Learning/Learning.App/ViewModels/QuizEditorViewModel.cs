@@ -1,11 +1,12 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using Learning.App.Models;
 
 namespace Learning.App.ViewModels
 {
-    // Viewmodel edytora quizu (QuizEditorPage + QuizSavePage).
+    // Viewmodel edytora quizu (QuizEditorPage).
     // Pytania to obiekty Question, a na końcu z nich powstaje QuizMaterial.
     public partial class QuizEditorViewModel : ObservableObject
     {
@@ -22,7 +23,7 @@ namespace Learning.App.ViewModels
         // ----- strona zapisu -----
         [ObservableProperty] private string quizTitle = "";
         [ObservableProperty] private string? selectedCategory;
-        [ObservableProperty] private string description = ""; // QuizMaterial nie ma pola na opis, więc się nie zapisuje
+        [ObservableProperty] private string description = "";
 
         public List<string> Categories { get; } = new()
         {
@@ -153,7 +154,20 @@ namespace Learning.App.ViewModels
         private async Task Save()
         {
             Commit();
-            await Shell.Current.GoToAsync("//QuizSavePage");
+
+            // Waliduj przed przejściem do strony zapisu
+            string? error = Validate();
+            if (error != null)
+            {
+                await Shell.Current.DisplayAlert("Nie można zapisać", error, "OK");
+                return;
+            }
+
+            // Serializuj pytania do JSON
+            var questionsJson = JsonSerializer.Serialize(questions);
+            var queryParameter = $"materialType=quiz&quizTitle={Uri.EscapeDataString(QuizTitle)}&selectedCategory={Uri.EscapeDataString(SelectedCategory ?? "")}&description={Uri.EscapeDataString(Description)}&questions={Uri.EscapeDataString(questionsJson)}";
+
+            await Shell.Current.GoToAsync($"MaterialSavePage?{queryParameter}");
         }
 
         [RelayCommand]
@@ -162,35 +176,11 @@ namespace Learning.App.ViewModels
             await Shell.Current.GoToAsync("//QuizEditorPage");
         }
 
-        // ----- zapis: tworzy QuizMaterial -----
-        [RelayCommand]
-        private async Task SaveQuiz()
-        {
-            string? error = Validate();
-            if (error != null)
-            {
-                await Shell.Current.DisplayAlert("Nie można zapisać", error, "OK");
-                return;
-            }
-
-            var categories = new List<int>();
-            if (SelectedCategory != null)
-                categories.Add(Categories.IndexOf(SelectedCategory) + 1);
-
-            // id, autor i widoczność na razie tymczasowe
-            var quiz = new QuizMaterial(main.Materials.Count + 1, false, "Użytkownik", QuizTitle, categories);
-            foreach (var q in questions)
-                quiz.AddQuestion(q);
-
-            main.Materials.Add(quiz);
-            Reset();
-            await Shell.Current.GoToAsync("//MainPage");
-        }
-
+        // ----- walidacja -----
         private string? Validate()
         {
-            if (string.IsNullOrWhiteSpace(QuizTitle))
-                return "Podaj tytuł quizu.";
+            //if (string.IsNullOrWhiteSpace(QuizTitle))
+            //    return "Podaj tytuł quizu.";
 
             for (int i = 0; i < questions.Count; i++)
             {
@@ -205,9 +195,9 @@ namespace Learning.App.ViewModels
         {
             questions = new() { NewQuestion() };
             currentIndex = 0;
-            QuizTitle = "";
+            //QuizTitle = "";
             SelectedCategory = null;
-            Description = "";
+            //Description = "";
             Show();
         }
     }

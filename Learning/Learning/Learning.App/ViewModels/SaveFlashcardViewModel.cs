@@ -27,29 +27,28 @@ namespace Learning.App.ViewModels
 
 
         [RelayCommand]
-        private async void Save()
+        private async Task Save()
         {
-            if(string.IsNullOrWhiteSpace(Title) || Category == -1){
-                await Application.Current!.MainPage!.DisplayAlert("Błąd", "Wypełnij wszystkie wymagane pola!", "OK");
-            }
-            else
+            if (string.IsNullOrWhiteSpace(Title) || Category == -1)
             {
-                if(Title.Length > 50)
-                {
-                    await Application.Current!.MainPage!.DisplayAlert("Błąd", "Tytuł nie może być dłuższy niż 50 znaków!", "OK");
-                    return;
-                }
-                else
-                {
-                    await Application.Current!.MainPage!.DisplayAlert("Sukces", "Fiszki zostały zapisane!", "OK");
-                    await Shell.Current.GoToAsync("///MainPage");
-                }
-                
+                await Application.Current!.MainPage!.DisplayAlert("Błąd", "Wypełnij wszystkie wymagane pola!", "OK");
+                return;
             }
+
+            if (Title.Length > 50)
+            {
+                await Application.Current!.MainPage!.DisplayAlert("Błąd", "Tytuł nie może być dłuższy niż 50 znaków!", "OK");
+                return;
+            }
+
+            // Kieruj na MaterialSavePage dla fiszek
+            var categoryName = Category >= 0 && Category < 3 ? new[] { "Opcja 1", "Opcja 2", "Opcja 3" }[Category] : "";
+            var queryParameter = $"materialType=flashcard&quizTitle={Uri.EscapeDataString(Title)}&selectedCategory={Uri.EscapeDataString(categoryName)}&description={Uri.EscapeDataString(Description ?? "")}";
+            await Shell.Current.GoToAsync($"MaterialSavePage?{queryParameter}");
         }
 
         [RelayCommand]
-        private async void Cancel()
+        private async Task Cancel()
         {
             bool answer = await Application.Current!.MainPage!.DisplayAlert("Anuluj", "Czy na pewno chcesz anulować?", "Tak", "Nie");
             if (answer)

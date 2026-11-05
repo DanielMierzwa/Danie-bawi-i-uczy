@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Text.Json;
 using Learning.App.Models;
 using Learning.App.ViewModels;
 using Learning.App.Views;
@@ -111,10 +112,30 @@ public partial class FlashcardEditorViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async void SaveCards()
+    private async Task SaveCards()
     {
-        SaveFlashcardViewModel.Flashcards = Flashcards;
-        await Shell.Current.GoToAsync(nameof(SaveFlashcard));
+        // Waliduj fiszki przed przejściem
+        if (Flashcards == null || Flashcards.Count == 0)
+        {
+            await Application.Current!.MainPage!.DisplayAlert("Błąd", "Brak fiszek do zapisania!", "OK");
+            return;
+        }
+
+        // Sprawdź czy wszystkie fiszki mają front i back
+        foreach (var card in Flashcards)
+        {
+            if (string.IsNullOrWhiteSpace(card.Front) || string.IsNullOrWhiteSpace(card.Back))
+            {
+                await Application.Current!.MainPage!.DisplayAlert("Błąd", "Wszystkie fiszki muszą mieć front i back", "OK");
+                return;
+            }
+        }
+
+        // Serializuj fiszki do JSON
+        var flashcardsJson = System.Text.Json.JsonSerializer.Serialize(Flashcards);
+        var queryParameter = $"materialType=flashcard&flashcards={Uri.EscapeDataString(flashcardsJson)}";
+
+        await Shell.Current.GoToAsync($"MaterialSavePage?{queryParameter}");
     }
 
     [RelayCommand]
