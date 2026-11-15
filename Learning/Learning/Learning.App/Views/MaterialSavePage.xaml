@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Learning.App.Views.MaterialSavePage"
+             Title="Zapisz materiał">
+
+    <!-- Strona zapisu ujednolicona dla Quiz i Flashcard -->
+    <ScrollView>
+        <Border Style="{StaticResource FormCard}" Margin="16" VerticalOptions="Center">
+            <VerticalStackLayout Spacing="12">
+
+                <Label Style="{StaticResource FormCaption}" Text="Zapisz materiał" />
+
+                <!-- Tytuł -->
+                <Border Style="{StaticResource FieldBorder}">
+                    <Entry Placeholder="tytuł" Text="{Binding Title}" />
+                </Border>
+
+                <!-- Kategoria -->
+                <Border Style="{StaticResource FieldBorder}">
+                    <Picker Title="kategoria"
+                            ItemsSource="{Binding Categories}"
+                            SelectedItem="{Binding SelectedCategory}" />
+                </Border>
+
+                <!-- Publiczna (z SaveFlashcard) -->
+                <HorizontalStackLayout Spacing="12" Padding="12">
+                    <Label Text="Publiczna:" VerticalOptions="Center" FontSize="14" />
+                    <CheckBox IsChecked="{Binding IsPublic}" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <!-- Opis -->
+                <Border Style="{StaticResource FieldBorder}">
+                    <Editor Placeholder="opis" Text="{Binding Description}" HeightRequest="160" />
+                </Border>
+
+                <!-- Przyciski akcji -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Button Text="zapisz" Command="{Binding SaveCommand}" />
+                    <Button Grid.Column="1" Style="{StaticResource SecondaryButton}"
+                            Text="wróć" Command="{Binding BackCommand}" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </ScrollView>
+</ContentPage>

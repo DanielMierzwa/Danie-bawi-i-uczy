@@ -45,6 +45,10 @@
       ContentTemplate="{DataTemplate views:SaveFlashcard}"
       Route="SaveFlashCard" />
     <ShellContent
+        Title="Zapis materiału"
+        ContentTemplate="{DataTemplate views:MaterialSavePage}"
+        Route="MaterialSavePage" />
+    <ShellContent
         Title="Logowanie"
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="LoginPage" />
