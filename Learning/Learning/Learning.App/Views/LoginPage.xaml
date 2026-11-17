@@ -15,8 +15,8 @@
    </Border>
    <Label Text="Witaj ponownie!" FontSize="28" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
    <Label Text="Zaloguj się, aby wrócić do swoich materiałów." HorizontalTextAlignment="Center" TextColor="{AppThemeBinding Light=Gray, Dark=LightGray}"/>
-   <VerticalStackLayout Spacing="6"><Label Text="E-mail"/><Entry x:Name="EmailEntry" Placeholder="adres@email.com" Keyboard="Email"/></VerticalStackLayout>
-   <VerticalStackLayout Spacing="6"><Label Text="Hasło"/><Entry x:Name="PasswordEntry" Placeholder="Wpisz hasło" IsPassword="True"/></VerticalStackLayout>
+    <VerticalStackLayout Spacing="6"><Label Text="Nazwa użytkownika"/><Entry x:Name="LoginEntry" Placeholder="Wpisz nazwę użytkownika" Text="{Binding UserName}"/></VerticalStackLayout>
+    <VerticalStackLayout Spacing="6"><Label Text="Hasło"/><Entry x:Name="PasswordEntry" Placeholder="Wpisz hasło" IsPassword="True" Text="{Binding Password}"/></VerticalStackLayout>
    <Button Text="Zaloguj się" HeightRequest="50" Command="{Binding LoginCommand}"/>
    <HorizontalStackLayout HorizontalOptions="Center" Spacing="4"><Label Text="Nie masz konta?" VerticalOptions="Center"/>
     <Button Text="Zarejestruj się" Padding="4,0" BackgroundColor="Transparent" TextColor="{DynamicResource Primary}" Command="{Binding RegisterCommand}"/>
