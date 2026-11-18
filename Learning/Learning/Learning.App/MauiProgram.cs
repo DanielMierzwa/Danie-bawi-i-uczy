@@ -1,5 +1,8 @@
-﻿using Learning.App.ViewModels;
+using Learning.App.Services;
+using Learning.App.ViewModels;
 using Learning.App.Views;
+using Learning.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Learning.App
@@ -17,6 +20,8 @@ namespace Learning.App
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddDbContextFactory<LearningDbContext>();
+
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
@@ -30,12 +35,20 @@ namespace Learning.App
             builder.Services.AddSingleton<FlashcardEditorPage>();
             builder.Services.AddSingleton<SaveFlashcardViewModel>();
             builder.Services.AddSingleton<SaveFlashcard>();
-
-            builder.Services.AddSingleton<QuizEditorViewModel>();
             builder.Services.AddSingleton<QuizEditorPage>();
             builder.Services.AddSingleton<QuizSavePage>();
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<LoginPageViewModel>();
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<RegisterPageViewModel>();
+            builder.Services.AddSingleton<AuthService>();
 
-            return builder.Build();
+            var app = builder.Build();
+            using var scope = app.Services.CreateScope();
+            using var db = scope.ServiceProvider.GetRequiredService<LearningDbContext>();
+            db.Database.EnsureCreated();
+
+            return app;
         }
     }
 }

@@ -16,8 +16,7 @@ public class Material
 
     public bool IsPublic { get; set; } = false; // false = prywatne, true = publiczne
 
-    public string Description { get; set; } // Opis materiału   
-
+    public string Description { get; set; }
 
     // Relacje
     public int UserId { get; set; }

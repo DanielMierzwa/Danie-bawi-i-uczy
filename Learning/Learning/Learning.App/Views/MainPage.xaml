@@ -26,10 +26,13 @@
         <!-- Nawigacja -->
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*" ColumnSpacing="8">
             <Button Grid.Column="0" Text="Twoje materiały" FontSize="12" Padding="6,10"
-                    Command="{Binding MyMaterialsCommand}" />
-            <Button Grid.Column="1" Text="Coś"/>
+                    Command="{Binding MyMaterialsCommand}" IsVisible="{Binding MaterialsVisible}"/>
+            <Button Grid.Column="0" Text="Utwórz Konto" 
+                    Command="{Binding RegisterCommand}"  IsVisible="{Binding UtworzKontoVisible}"/>
+            <Button Grid.Column="2" Text="Zaloguj Konto" 
+                    Command="{Binding LogujCommand}"  IsVisible="{Binding UtworzKontoVisible}"/>
             <Button Grid.Column="2" Text="Konto" FontSize="12" Padding="6,10"
-                    Command="{Binding AccountCommand}" />
+                   Command="{Binding AccountCommand}"  IsVisible="{Binding KontoVisible}"/>
 
         </Grid>
 
