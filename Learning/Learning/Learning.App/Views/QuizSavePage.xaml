@@ -4,6 +4,7 @@
              x:Class="Learning.App.Views.QuizSavePage"
              Title="Zapis quizu">
 
+    <!-- Strona zapisu. BindingContext = QuizEditorViewModel (wstrzykiwany w code-behind). -->
     <ScrollView>
         <Border Style="{StaticResource FormCard}" Margin="16" VerticalOptions="Center">
             <VerticalStackLayout Spacing="12">
@@ -27,7 +28,7 @@
                 <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
                     <Button Text="zapisz" Command="{Binding SaveQuizCommand}" />
                     <Button Grid.Column="1" Style="{StaticResource SecondaryButton}"
-                            Text="back" Command="{Binding BackCommand}" />
+                            Text="wróć" Command="{Binding BackCommand}" />
                 </Grid>
             </VerticalStackLayout>
         </Border>

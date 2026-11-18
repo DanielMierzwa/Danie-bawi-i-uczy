@@ -16,6 +16,10 @@ public class LearningDbContext : DbContext
     public DbSet<Achievement> Achievements { get; set; }
     public DbSet<UserAchievement> UserAchievements { get; set; }
 
+    public LearningDbContext()
+    {
+        // to ma naprawić błąd
+    }
     public LearningDbContext(DbContextOptions<LearningDbContext> options) : base(options)
     {
     }
